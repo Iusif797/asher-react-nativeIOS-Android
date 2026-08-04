@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { SegmentedControl } from '@/components/ui/SegmentedControl'
+import { Tag } from '@/components/ui/Tag'
 import { DIRECTIONS } from '@/data/directions'
-import { SPECIALISTS, specialistById } from '@/data/specialists'
+import { useSpecialists } from '@/hooks/useSpecialists'
 import type { Specialist } from '@/lib/types'
 import { pluralize } from '@/lib/format'
 import { BookingModal } from './BookingModal'
@@ -14,6 +15,7 @@ type FormatFilter = 'all' | 'online' | 'inperson'
 const LANGUAGES = ['Русский', 'Азербайджанский', 'Английский']
 
 export const BookingPage = () => {
+  const { specialists, isLive } = useSpecialists()
   const [searchParams, setSearchParams] = useSearchParams()
   const [direction, setDirection] = useState('all')
   const [format, setFormat] = useState<FormatFilter>('all')
@@ -23,16 +25,16 @@ export const BookingPage = () => {
   useEffect(() => {
     const preselected = searchParams.get('specialist')
     if (!preselected) return
-    const specialist = specialistById(preselected)
+    const specialist = specialists.find((s) => s.id === preselected)
     if (specialist) setPicked(specialist)
-  }, [searchParams])
+  }, [searchParams, specialists])
 
   const closeModal = () => {
     setPicked(null)
     if (searchParams.get('specialist')) setSearchParams({}, { replace: true })
   }
 
-  const filtered = SPECIALISTS.filter((s) => {
+  const filtered = specialists.filter((s) => {
     if (direction !== 'all' && !s.directions.some((d) => d === direction)) return false
     if (format !== 'all' && !s.formats.includes(format)) return false
     if (language !== 'all' && !s.languages.includes(language)) return false
@@ -95,6 +97,11 @@ export const BookingPage = () => {
       </div>
       <p className="booking-count">
         Найдено: {pluralize(filtered.length, 'специалист', 'специалиста', 'специалистов')}
+        {isLive && (
+          <Tag tone="accent" icon="shield">
+            данные из базы ASHER
+          </Tag>
+        )}
       </p>
       <div className="booking-list">
         {filtered.map((specialist) => (
