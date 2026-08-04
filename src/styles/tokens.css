@@ -1,0 +1,64 @@
+:root {
+  --color-surface: oklch(97.6% 0.009 84);
+  --color-surface-raised: oklch(99.3% 0.004 90);
+  --color-surface-sunken: oklch(95% 0.012 84);
+  --color-ink: oklch(24% 0.022 165);
+  --color-ink-soft: oklch(42% 0.02 165);
+  --color-ink-faint: oklch(51% 0.018 160);
+  --color-line: oklch(89.5% 0.012 90);
+  --color-line-strong: oklch(83% 0.016 90);
+  --color-accent: oklch(46% 0.072 168);
+  --color-accent-deep: oklch(32% 0.052 172);
+  --color-accent-soft: oklch(93.5% 0.024 165);
+  --color-accent-mist: oklch(96.2% 0.014 165);
+  --color-warm: oklch(66% 0.115 52);
+  --color-warm-deep: oklch(52% 0.115 45);
+  --color-warm-soft: oklch(94% 0.032 70);
+  --color-gold: oklch(76% 0.085 85);
+  --color-danger: oklch(54% 0.15 27);
+  --color-danger-soft: oklch(95% 0.025 27);
+  --color-on-accent: oklch(98.5% 0.006 90);
+
+  --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-ui: 'Manrope', -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: clamp(0.9375rem, 0.91rem + 0.12vw, 1rem);
+  --text-md: 1.0625rem;
+  --text-lg: clamp(1.1875rem, 1.08rem + 0.45vw, 1.4375rem);
+  --text-xl: clamp(1.625rem, 1.35rem + 1.1vw, 2.25rem);
+  --text-hero: clamp(2.125rem, 1.5rem + 2.6vw, 3.75rem);
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 2.5rem;
+  --space-8: 3rem;
+  --space-section: clamp(2.25rem, 1.75rem + 2vw, 4rem);
+
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --radius-xl: 28px;
+  --radius-full: 999px;
+
+  --shadow-soft:
+    0 1px 2px oklch(30% 0.02 160 / 0.05),
+    0 10px 28px oklch(30% 0.02 160 / 0.07);
+  --shadow-lift:
+    0 2px 5px oklch(30% 0.02 160 / 0.08),
+    0 18px 44px oklch(30% 0.02 160 / 0.12);
+  --shadow-inset: inset 0 0 0 1px var(--color-line);
+
+  --duration-fast: 150ms;
+  --duration-normal: 280ms;
+  --duration-slow: 500ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --shell-sidebar-width: 264px;
+  --shell-max-width: 1080px;
+}

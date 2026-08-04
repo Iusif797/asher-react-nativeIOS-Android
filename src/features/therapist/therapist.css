@@ -1,0 +1,303 @@
+.therapist-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-5);
+}
+
+.therapist-tabs {
+  margin-top: var(--space-6);
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.therapist-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.therapist-panel {
+  margin-top: var(--space-5);
+  display: grid;
+  gap: var(--space-3);
+}
+
+.therapist-slot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+}
+
+.therapist-slot-time {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+.therapist-slot-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.therapist-slot-client {
+  font-weight: 700;
+  font-size: var(--text-sm);
+}
+
+.therapist-clients {
+  margin-top: var(--space-5);
+  display: grid;
+  gap: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .therapist-clients {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.therapist-client {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5);
+}
+
+.therapist-client-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.therapist-client-head h4 {
+  font-size: var(--text-md);
+}
+
+.therapist-client-request {
+  color: var(--color-ink-soft);
+  font-weight: 600;
+}
+
+.therapist-client-meta {
+  color: var(--color-ink-faint);
+  font-size: var(--text-sm);
+}
+
+.therapist-client-note {
+  border-left: 3px solid var(--color-accent);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background: var(--color-surface-sunken);
+  padding: var(--space-3) var(--space-4);
+  color: var(--color-ink-soft);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+.therapist-client-homework {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.therapist-client-homework-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-size: var(--text-sm);
+}
+
+.therapist-client-homework-row span {
+  color: var(--color-ink-soft);
+  font-weight: 600;
+}
+
+.therapist-client-homework-row strong {
+  font-weight: 800;
+}
+
+.therapist-client-assign {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+.therapist-templates {
+  margin-top: var(--space-5);
+}
+
+.therapist-template {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+}
+
+.therapist-template + .therapist-template {
+  border-top: 1px solid var(--color-line);
+}
+
+.therapist-template-title {
+  font-weight: 700;
+  min-width: 0;
+}
+
+.therapist-template-use {
+  margin-left: auto;
+}
+
+.therapist-assign {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.therapist-assign-group {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.therapist-assign-label {
+  font-size: var(--text-xs);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-ink-faint);
+}
+
+.therapist-assign-client {
+  justify-self: start;
+}
+
+.therapist-option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-raised);
+  text-align: left;
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.therapist-option:hover {
+  background: var(--color-surface-sunken);
+  border-color: var(--color-line-strong);
+}
+
+.therapist-option:active {
+  transform: scale(0.99);
+}
+
+.therapist-option--selected,
+.therapist-option--selected:hover {
+  border-color: var(--color-accent);
+  background: var(--color-accent-mist);
+}
+
+.therapist-option-dot {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-line-strong);
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.therapist-option-dot::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-accent);
+  transform: scale(0);
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.therapist-option--selected .therapist-option-dot {
+  border-color: var(--color-accent);
+}
+
+.therapist-option--selected .therapist-option-dot::after {
+  transform: scale(1);
+}
+
+.therapist-option-text {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.therapist-option-title {
+  font-weight: 700;
+  font-size: var(--text-sm);
+}
+
+.therapist-option-subtitle {
+  font-size: var(--text-xs);
+  color: var(--color-ink-faint);
+}
+
+.therapist-assign-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.therapist-assign-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-2);
+  padding: var(--space-6) var(--space-4) var(--space-2);
+}
+
+.therapist-assign-check {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background: var(--color-accent-soft);
+  color: var(--color-accent-deep);
+  margin-bottom: var(--space-2);
+  animation: therapist-pop var(--duration-normal) var(--ease-out) both;
+}
+
+.therapist-assign-success h3 {
+  font-size: var(--text-lg);
+}
+
+.therapist-assign-success p {
+  color: var(--color-ink-soft);
+}
+
+.therapist-assign-done {
+  margin-top: var(--space-3);
+}
+
+@keyframes therapist-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
