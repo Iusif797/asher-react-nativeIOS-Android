@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">ASHER</string>
+    <string name="title_activity_main">ASHER</string>
+    <string name="package_name">com.asher.app</string>
+    <string name="custom_url_scheme">com.asher.app</string>
+</resources>
