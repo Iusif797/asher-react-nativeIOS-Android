@@ -14,7 +14,7 @@
   align-items: center;
   justify-content: space-between;
   padding: calc(env(safe-area-inset-top) + var(--space-3)) var(--space-4) var(--space-3);
-  background: oklch(97.6% 0.009 84 / 0.85);
+  background: var(--color-glass);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--color-line);
 }
@@ -61,7 +61,7 @@
   display: flex;
   justify-content: space-around;
   padding: var(--space-2) var(--space-2) calc(env(safe-area-inset-bottom) + var(--space-2));
-  background: oklch(99.3% 0.004 90 / 0.9);
+  background: var(--color-glass-strong);
   backdrop-filter: blur(14px);
   border-top: 1px solid var(--color-line);
 }
@@ -117,7 +117,7 @@
     gap: var(--space-5);
     padding: var(--space-6) var(--space-4);
     border-right: 1px solid var(--color-line);
-    background: oklch(99.3% 0.004 90 / 0.6);
+    background: var(--color-glass);
     backdrop-filter: blur(10px);
     overflow-y: auto;
   }

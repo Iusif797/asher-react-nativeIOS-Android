@@ -55,8 +55,8 @@
 }
 
 .homework-task__icon--gold {
-  background: oklch(94% 0.05 90);
-  color: oklch(48% 0.09 75);
+  background: var(--color-gold-soft);
+  color: var(--color-gold-ink);
 }
 
 .homework-task__body {
