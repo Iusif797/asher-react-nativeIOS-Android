@@ -1,4 +1,7 @@
+import { useEffect } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
+import { useAuthStore } from '@/stores/authStore'
+import { WelcomePage } from '@/features/auth/WelcomePage'
 import { AppShell } from './layout/AppShell'
 import { TodayPage } from '@/features/today/TodayPage'
 import { RoadmapPage } from '@/features/roadmap/RoadmapPage'
@@ -14,7 +17,20 @@ import { AccountPage } from '@/features/account/AccountPage'
 import { TherapistPage } from '@/features/therapist/TherapistPage'
 import { B2BPage } from '@/features/b2b/B2BPage'
 
-export const App = () => (
+export const App = () => {
+  const status = useAuthStore((s) => s.status)
+  const init = useAuthStore((s) => s.init)
+
+  useEffect(() => {
+    void init()
+  }, [init])
+
+  if (status === 'loading') return null
+  if (status === 'signedOut') return <WelcomePage />
+  return <AppRoutes />
+}
+
+const AppRoutes = () => (
   <Routes>
     <Route element={<AppShell />}>
       <Route index element={<TodayPage />} />

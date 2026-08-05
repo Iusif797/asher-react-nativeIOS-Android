@@ -9,6 +9,7 @@ import { ROADMAP_STAGES } from '@/data/roadmap'
 import { specialistById } from '@/data/specialists'
 import { formatDay, formatDayTime, formatWeekday, greetingByHour } from '@/lib/dates'
 import { selectUpcoming, useBookingStore } from '@/stores/bookingStore'
+import { useAuthStore } from '@/stores/authStore'
 import { selectHomeworkProgress, useHomeworkStore } from '@/stores/homeworkStore'
 import { selectCurrentDay, useProgramStore } from '@/stores/programStore'
 import { MoodCheckin } from './MoodCheckin'
@@ -27,6 +28,7 @@ interface QuickLink {
 }
 
 export const TodayPage = () => {
+  const fullName = useAuthStore((s) => s.fullName)
   const upcoming = useBookingStore(selectUpcoming)[0]
   const specialist = upcoming ? specialistById(upcoming.specialistId) : undefined
   const currentDay = useProgramStore(selectCurrentDay)
@@ -50,7 +52,7 @@ export const TodayPage = () => {
           {formatWeekday(nowISO)}, {formatDay(nowISO)}
         </p>
         <h1 className="today__title">
-          {greetingByHour(new Date().getHours())}, {USER_NAME}
+          {greetingByHour(new Date().getHours())}, {fullName ?? USER_NAME}
         </h1>
         <p className="page-lead">Ваше пространство психологического благополучия.</p>
       </header>
