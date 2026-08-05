@@ -5,3 +5,5 @@ dist
 .env
 ios/DerivedData
 ios/App/App/public
+android/keystore.properties
+android/keystore/
