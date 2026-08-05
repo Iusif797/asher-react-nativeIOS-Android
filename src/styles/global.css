@@ -90,10 +90,6 @@ ol {
   background: var(--color-accent-soft);
 }
 
-.page {
-  animation: page-rise var(--duration-slow) var(--ease-out) both;
-}
-
 .page-kicker {
   font-size: var(--text-xs);
   font-weight: 800;

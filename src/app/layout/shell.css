@@ -90,19 +90,27 @@
   transform: scale(0.94);
 }
 
-.tabbar__item svg {
+.tabbar__icon {
+  position: relative;
+  display: grid;
+  place-items: center;
   padding: 3px 12px;
   border-radius: var(--radius-full);
-  box-sizing: content-box;
-  transition: background-color var(--duration-normal) var(--ease-out);
+}
+
+.tabbar__icon svg {
+  position: relative;
+}
+
+.tabbar__pill {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-full);
+  background: var(--color-accent-soft);
 }
 
 .tabbar__item--active {
   color: var(--color-accent-deep);
-}
-
-.tabbar__item--active svg {
-  background: var(--color-accent-soft);
 }
 
 @media (min-width: 1024px) {

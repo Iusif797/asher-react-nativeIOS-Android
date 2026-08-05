@@ -1,3 +1,5 @@
+import { motion } from 'motion/react'
+
 interface ProgressBarProps {
   value: number
   tone?: 'accent' | 'warm'
@@ -38,7 +40,7 @@ export const ProgressRing = ({ value, size = 96, label, sublabel }: ProgressRing
           strokeWidth={stroke}
           fill="none"
         />
-        <circle
+        <motion.circle
           className="ring__fill"
           cx={size / 2}
           cy={size / 2}
@@ -47,7 +49,9 @@ export const ProgressRing = ({ value, size = 96, label, sublabel }: ProgressRing
           fill="none"
           strokeLinecap="round"
           strokeDasharray={circumference}
-          strokeDashoffset={circumference * (1 - clamped / 100)}
+          initial={{ strokeDashoffset: circumference }}
+          animate={{ strokeDashoffset: circumference * (1 - clamped / 100) }}
+          transition={{ type: 'spring', stiffness: 55, damping: 18 }}
           transform={`rotate(-90 ${size / 2} ${size / 2})`}
         />
       </svg>

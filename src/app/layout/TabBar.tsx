@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom'
+import { motion } from 'motion/react'
 import { Icon } from '@/components/ui/Icon'
 import { useAppStore } from '@/stores/appStore'
 import { CLIENT_NAV_MOBILE, THERAPIST_NAV } from './nav'
@@ -18,8 +19,21 @@ export const TabBar = () => {
             isActive ? 'tabbar__item tabbar__item--active' : 'tabbar__item'
           }
         >
-          <Icon name={item.icon} size={21} />
-          <span>{item.label}</span>
+          {({ isActive }) => (
+            <>
+              <span className="tabbar__icon">
+                {isActive && (
+                  <motion.span
+                    className="tabbar__pill"
+                    layoutId="tabbar-pill"
+                    transition={{ type: 'spring', stiffness: 430, damping: 33 }}
+                  />
+                )}
+                <Icon name={item.icon} size={21} />
+              </span>
+              <span>{item.label}</span>
+            </>
+          )}
         </NavLink>
       ))}
     </nav>

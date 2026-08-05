@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { motion } from 'motion/react'
 import { Button } from '@/components/ui/Button'
 import { Icon } from '@/components/ui/Icon'
 import { EMOTIONS } from '@/data/wellbeing'
@@ -26,9 +27,14 @@ export const MoodCheckin = () => {
   if (todayEntry) {
     return (
       <article className="card today-mood today-mood--done">
-        <div className="today-mood__badge">
+        <motion.div
+          className="today-mood__badge"
+          initial={{ scale: 0.4, opacity: 0, rotate: -20 }}
+          animate={{ scale: 1, opacity: 1, rotate: 0 }}
+          transition={{ type: 'spring', stiffness: 320, damping: 17 }}
+        >
           <Icon name="check" size={22} strokeWidth={2.2} />
-        </div>
+        </motion.div>
         <h3>Настроение отмечено: {todayEntry.score}/10</h3>
         <div className="today-mood__emotions">
           {todayEntry.emotions.map((emotion) => (

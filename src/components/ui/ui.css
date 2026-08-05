@@ -158,7 +158,6 @@
 
 .ring__fill {
   stroke: var(--color-accent);
-  transition: stroke-dashoffset var(--duration-slow) var(--ease-out);
 }
 
 .ring__center {
@@ -197,7 +196,6 @@
   inset: 0;
   background: oklch(20% 0.02 165 / 0.45);
   backdrop-filter: blur(3px);
-  animation: fade-in var(--duration-normal) var(--ease-out);
 }
 
 .modal__panel {
@@ -208,7 +206,6 @@
   background: var(--color-surface-raised);
   border-radius: var(--radius-xl) var(--radius-xl) 0 0;
   box-shadow: var(--shadow-lift);
-  animation: modal-rise var(--duration-normal) var(--ease-out);
 }
 
 .modal__panel--wide {

@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
+import { MotionConfig } from 'motion/react'
 import { useAuthStore } from '@/stores/authStore'
 import { WelcomePage } from '@/features/auth/WelcomePage'
 import { AppShell } from './layout/AppShell'
@@ -25,9 +26,10 @@ export const App = () => {
     void init()
   }, [init])
 
-  if (status === 'loading') return null
-  if (status === 'signedOut') return <WelcomePage />
-  return <AppRoutes />
+  const content =
+    status === 'loading' ? null : status === 'signedOut' ? <WelcomePage /> : <AppRoutes />
+
+  return <MotionConfig reducedMotion="user">{content}</MotionConfig>
 }
 
 const AppRoutes = () => (
