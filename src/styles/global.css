@@ -131,6 +131,16 @@ a.card:active {
   transform: scale(0.98);
 }
 
+.brand-emblem {
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 0 1px var(--color-line);
+  flex-shrink: 0;
+}
+
+.brand-emblem--lg {
+  box-shadow: 0 0 0 1px var(--color-line), var(--shadow-soft);
+}
+
 .chip {
   display: inline-flex;
   align-items: center;

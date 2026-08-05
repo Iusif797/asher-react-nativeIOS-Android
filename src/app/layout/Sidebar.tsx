@@ -3,6 +3,7 @@ import { Icon } from '@/components/ui/Icon'
 import { SegmentedControl } from '@/components/ui/SegmentedControl'
 import { useAppStore, type AppMode } from '@/stores/appStore'
 import { CLIENT_NAV, THERAPIST_NAV } from './nav'
+import emblem from '@/assets/emblem.png'
 
 export const Sidebar = () => {
   const mode = useAppStore((s) => s.mode)
@@ -19,8 +20,11 @@ export const Sidebar = () => {
   return (
     <aside className="sidebar">
       <NavLink to="/" className="sidebar__brand">
-        <span className="sidebar__logo">ASHER</span>
-        <span className="sidebar__tagline">психологическое благополучие</span>
+        <img className="brand-emblem brand-emblem--lg" src={emblem} alt="Логотип ASHER" width="44" height="44" />
+        <span className="sidebar__brand-text">
+          <span className="sidebar__logo">ASHER</span>
+          <span className="sidebar__tagline">психологическое благополучие</span>
+        </span>
       </NavLink>
       <nav className="sidebar__nav" aria-label="Основная навигация">
         {nav.map((item) => (

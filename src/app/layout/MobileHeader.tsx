@@ -1,6 +1,7 @@
 import { NavLink, useNavigate } from 'react-router-dom'
 import { Icon } from '@/components/ui/Icon'
 import { useAppStore } from '@/stores/appStore'
+import emblem from '@/assets/emblem.png'
 
 export const MobileHeader = () => {
   const mode = useAppStore((s) => s.mode)
@@ -16,6 +17,7 @@ export const MobileHeader = () => {
   return (
     <header className="mobile-header">
       <NavLink to="/" className="mobile-header__logo">
+        <img className="brand-emblem" src={emblem} alt="Логотип ASHER" width="34" height="34" />
         ASHER
       </NavLink>
       <div className="mobile-header__actions">

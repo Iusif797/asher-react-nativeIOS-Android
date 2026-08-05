@@ -15,14 +15,8 @@
   animation: page-rise var(--duration-slow) var(--ease-out) both;
 }
 
-.welcome__halo {
-  display: grid;
-  place-items: center;
-  width: 58px;
-  height: 58px;
-  border-radius: var(--radius-full);
-  background: var(--color-accent-soft);
-  color: var(--color-accent-deep);
+.welcome__emblem {
+  box-shadow: 0 0 0 1px var(--color-line), var(--shadow-soft);
 }
 
 .welcome__brand {

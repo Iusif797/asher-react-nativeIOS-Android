@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/Button'
 import { Icon } from '@/components/ui/Icon'
 import { SegmentedControl } from '@/components/ui/SegmentedControl'
 import { useAuthStore } from '@/stores/authStore'
+import emblem from '@/assets/emblem.png'
 import './auth.css'
 
 type AuthMode = 'signin' | 'signup'
@@ -36,9 +37,13 @@ export const WelcomePage = () => {
   return (
     <div className="welcome">
       <div className="welcome__panel">
-        <span className="welcome__halo">
-          <Icon name="leaf" size={26} strokeWidth={1.5} />
-        </span>
+        <img
+          className="brand-emblem welcome__emblem"
+          src={emblem}
+          alt="Логотип ASHER"
+          width="76"
+          height="76"
+        />
         <p className="welcome__brand">ASHER</p>
         <h1 className="welcome__title">Пространство вашего психологического благополучия</h1>
         <p className="welcome__lead">
