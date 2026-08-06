@@ -28,7 +28,7 @@ const ProfileCard = () => {
         </p>
       </div>
       {subscriptionActive && (
-        <Tag tone="gold" icon="sparkle">
+        <Tag tone="premium" icon="sparkle">
           ASHER+
         </Tag>
       )}

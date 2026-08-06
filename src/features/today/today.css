@@ -57,8 +57,8 @@
 }
 
 .today-mood__scale {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(5, 44px);
   gap: var(--space-2);
 }
 
@@ -66,9 +66,9 @@
   width: 44px;
   height: 44px;
   border-radius: var(--radius-full);
-  border: 1.5px solid var(--color-line-strong);
+  border: 1px solid var(--color-line-strong);
   background: var(--color-surface-raised);
-  font-weight: 800;
+  font-weight: 700;
   font-size: var(--text-sm);
   color: var(--color-ink-soft);
   transition:
@@ -244,6 +244,10 @@
 @media (min-width: 768px) {
   .today__grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .today-mood__scale {
+    grid-template-columns: repeat(10, 44px);
   }
 
   .today-mood {

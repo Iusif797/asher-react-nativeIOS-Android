@@ -80,7 +80,7 @@
     130deg,
     var(--color-accent-soft),
     var(--color-surface-raised) 48%,
-    var(--color-warm-soft)
+    var(--color-deep-soft)
   );
 }
 

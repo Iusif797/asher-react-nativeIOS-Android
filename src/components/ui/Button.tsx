@@ -1,7 +1,7 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
 import { Icon, type IconName } from './Icon'
 
-type ButtonVariant = 'primary' | 'warm' | 'soft' | 'outline' | 'ghost'
+type ButtonVariant = 'primary' | 'deep' | 'soft' | 'outline' | 'ghost'
 type ButtonSize = 'sm' | 'md' | 'lg'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

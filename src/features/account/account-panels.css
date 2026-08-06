@@ -149,8 +149,8 @@
   width: 42px;
   height: 42px;
   border-radius: var(--radius-full);
-  background: var(--color-warm-soft);
-  color: var(--color-warm-deep);
+  background: var(--color-deep-soft);
+  color: var(--color-deep-strong);
 }
 
 .account-teams__title {

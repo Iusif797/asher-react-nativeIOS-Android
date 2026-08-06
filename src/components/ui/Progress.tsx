@@ -2,12 +2,11 @@ import { motion } from 'motion/react'
 
 interface ProgressBarProps {
   value: number
-  tone?: 'accent' | 'warm'
 }
 
-export const ProgressBar = ({ value, tone = 'accent' }: ProgressBarProps) => (
+export const ProgressBar = ({ value }: ProgressBarProps) => (
   <div
-    className={`progress progress--${tone}`}
+    className="progress"
     role="progressbar"
     aria-valuenow={Math.round(value)}
     aria-valuemin={0}

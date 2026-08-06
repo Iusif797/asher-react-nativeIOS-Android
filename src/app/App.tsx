@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { MotionConfig } from 'motion/react'
 import { useAuthStore } from '@/stores/authStore'
+import { useAppliedTheme } from '@/hooks/useAppliedTheme'
 import { WelcomePage } from '@/features/auth/WelcomePage'
 import { AppShell } from './layout/AppShell'
 import { TodayPage } from '@/features/today/TodayPage'
@@ -21,6 +22,8 @@ import { B2BPage } from '@/features/b2b/B2BPage'
 export const App = () => {
   const status = useAuthStore((s) => s.status)
   const init = useAuthStore((s) => s.init)
+
+  useAppliedTheme()
 
   useEffect(() => {
     void init()

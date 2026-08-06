@@ -21,7 +21,7 @@ const UpcomingPrograms = () => {
         {upcoming.map((program) => (
           <article key={program.id} className="card programs-card">
             <div className="programs-card-tags">
-              <Tag tone="warm">Скоро</Tag>
+              <Tag tone="deep">Скоро</Tag>
             </div>
             <h3>{program.title}</h3>
             <p className="programs-card-text">{program.subtitle}</p>

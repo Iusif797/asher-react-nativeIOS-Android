@@ -17,7 +17,7 @@ export const SubscriptionCard = () => {
           <h2>ASHER+</h2>
         </div>
         {subscriptionActive && (
-          <Tag tone="gold" icon="star">
+          <Tag tone="premium" icon="star">
             Подписка активна
           </Tag>
         )}
@@ -38,7 +38,7 @@ export const SubscriptionCard = () => {
           <span>в месяц</span>
         </p>
         {!subscriptionActive && (
-          <Button variant="warm" size="lg" onClick={activateSubscription}>
+          <Button variant="deep" size="lg" onClick={activateSubscription}>
             Оформить подписку
           </Button>
         )}

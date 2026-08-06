@@ -11,8 +11,8 @@
   gap: var(--space-3);
   padding: var(--space-3) var(--space-4);
   border-radius: var(--radius-md);
-  background: var(--color-warm-soft);
-  color: var(--color-warm-deep);
+  background: var(--color-deep-soft);
+  color: var(--color-deep-strong);
   font-size: var(--text-sm);
   font-weight: 600;
 }

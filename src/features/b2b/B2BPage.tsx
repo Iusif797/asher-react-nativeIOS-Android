@@ -86,7 +86,7 @@ export const B2BPage = () => {
                 <h3>Подключить команду</h3>
                 <p>Расскажем об условиях и рассчитаем программу под размер компании.</p>
               </div>
-              <Button variant="warm" size="lg" onClick={() => setIsRequested(true)}>
+              <Button variant="deep" size="lg" onClick={() => setIsRequested(true)}>
                 Запросить предложение
               </Button>
             </>

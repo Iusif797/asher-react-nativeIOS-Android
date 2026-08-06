@@ -1,26 +1,30 @@
 :root {
-  --color-surface: oklch(97.6% 0.009 84);
-  --color-surface-raised: oklch(99.3% 0.004 90);
-  --color-surface-sunken: oklch(95% 0.012 84);
-  --color-ink: oklch(24% 0.022 165);
-  --color-ink-soft: oklch(42% 0.02 165);
-  --color-ink-faint: oklch(51% 0.018 160);
-  --color-line: oklch(89.5% 0.012 90);
-  --color-line-strong: oklch(83% 0.016 90);
-  --color-accent: oklch(46% 0.072 168);
-  --color-accent-deep: oklch(32% 0.052 172);
-  --color-accent-soft: oklch(93.5% 0.024 165);
-  --color-accent-mist: oklch(96.2% 0.014 165);
-  --color-warm: oklch(66% 0.115 52);
-  --color-warm-deep: oklch(52% 0.115 45);
-  --color-warm-soft: oklch(94% 0.032 70);
-  --color-gold: oklch(76% 0.085 85);
-  --color-danger: oklch(54% 0.15 27);
-  --color-danger-soft: oklch(95% 0.025 27);
-  --color-on-accent: oklch(98.5% 0.006 90);
+  --color-surface: oklch(99.2% 0.006 230);
+  --color-surface-raised: oklch(100% 0 0);
+  --color-surface-sunken: oklch(96.8% 0.018 230);
+  --color-ink: oklch(24% 0.02 255);
+  --color-ink-soft: oklch(47% 0.022 250);
+  --color-ink-faint: oklch(53% 0.018 250);
+  --color-line: oklch(90.5% 0.008 250);
+  --color-line-strong: oklch(63% 0.03 242);
+  --color-accent: oklch(54% 0.09 235);
+  --color-accent-deep: oklch(46% 0.085 238);
+  --color-accent-soft: oklch(96.8% 0.018 230);
+  --color-accent-mist: oklch(98.4% 0.008 230);
+  --color-deep: oklch(31% 0.045 245);
+  --color-deep-strong: oklch(26% 0.04 245);
+  --color-deep-soft: oklch(93% 0.022 240);
+  --color-premium: oklch(62% 0.05 240);
+  --color-premium-soft: oklch(94.5% 0.014 240);
+  --color-premium-ink: oklch(40% 0.06 242);
+  --color-danger: oklch(55% 0.16 27);
+  --color-danger-soft: oklch(95.5% 0.02 27);
+  --color-on-accent: oklch(100% 0 0);
+  --color-on-deep: oklch(97% 0.006 230);
 
-  --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-display: 'Oswald', 'Manrope', -apple-system, 'Segoe UI', sans-serif;
   --font-ui: 'Manrope', -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-wordmark: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
 
   --text-xs: 0.75rem;
   --text-sm: 0.8125rem;
@@ -29,6 +33,9 @@
   --text-lg: clamp(1.1875rem, 1.08rem + 0.45vw, 1.4375rem);
   --text-xl: clamp(1.625rem, 1.35rem + 1.1vw, 2.25rem);
   --text-hero: clamp(2.125rem, 1.5rem + 2.6vw, 3.75rem);
+
+  --tracking-overline: 0.22em;
+  --tracking-display: 0.01em;
 
   --space-1: 0.25rem;
   --space-2: 0.5rem;
@@ -40,64 +47,61 @@
   --space-8: 3rem;
   --space-section: clamp(2.25rem, 1.75rem + 2vw, 4rem);
 
-  --radius-sm: 10px;
-  --radius-md: 16px;
-  --radius-lg: 22px;
-  --radius-xl: 28px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
   --radius-full: 999px;
 
   --shadow-soft:
-    0 1px 2px oklch(30% 0.02 160 / 0.05),
-    0 10px 28px oklch(30% 0.02 160 / 0.07);
+    0 1px 2px oklch(24% 0.02 255 / 0.04),
+    0 8px 24px oklch(24% 0.02 255 / 0.06);
   --shadow-lift:
-    0 2px 5px oklch(30% 0.02 160 / 0.08),
-    0 18px 44px oklch(30% 0.02 160 / 0.12);
+    0 2px 6px oklch(24% 0.02 255 / 0.06),
+    0 20px 48px oklch(24% 0.02 255 / 0.1);
   --shadow-inset: inset 0 0 0 1px var(--color-line);
 
   --duration-fast: 150ms;
-  --duration-normal: 280ms;
-  --duration-slow: 500ms;
+  --duration-normal: 260ms;
+  --duration-slow: 480ms;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 
-  --color-glass: oklch(97.6% 0.009 84 / 0.85);
-  --color-glass-strong: oklch(99.3% 0.004 90 / 0.9);
-  --color-gold-soft: oklch(94% 0.05 90);
-  --color-gold-ink: oklch(48% 0.09 75);
+  --color-glass: oklch(99.2% 0.006 230 / 0.86);
+  --color-glass-strong: oklch(100% 0 0 / 0.92);
 
   --shell-sidebar-width: 264px;
   --shell-max-width: 1080px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-surface: oklch(18.5% 0.014 170);
-    --color-surface-raised: oklch(22.5% 0.015 170);
-    --color-surface-sunken: oklch(15.5% 0.013 170);
-    --color-ink: oklch(92.5% 0.012 95);
-    --color-ink-soft: oklch(80% 0.014 100);
-    --color-ink-faint: oklch(68% 0.014 105);
-    --color-line: oklch(29% 0.014 170);
-    --color-line-strong: oklch(36% 0.016 170);
-    --color-accent: oklch(67% 0.075 165);
-    --color-accent-deep: oklch(79% 0.06 160);
-    --color-accent-soft: oklch(30% 0.045 168);
-    --color-accent-mist: oklch(24% 0.03 168);
-    --color-warm: oklch(70% 0.11 55);
-    --color-warm-deep: oklch(80% 0.09 62);
-    --color-warm-soft: oklch(29% 0.05 55);
-    --color-gold: oklch(78% 0.09 85);
-    --color-danger: oklch(70% 0.13 25);
-    --color-danger-soft: oklch(28% 0.05 25);
-    --color-on-accent: oklch(16% 0.02 170);
-    --color-glass: oklch(18.5% 0.014 170 / 0.85);
-    --color-glass-strong: oklch(22% 0.015 170 / 0.9);
-    --color-gold-soft: oklch(32% 0.06 88);
-    --color-gold-ink: oklch(82% 0.09 88);
-    --shadow-soft:
-      0 1px 2px oklch(5% 0.01 170 / 0.4),
-      0 10px 28px oklch(5% 0.01 170 / 0.45);
-    --shadow-lift:
-      0 2px 5px oklch(5% 0.01 170 / 0.5),
-      0 18px 44px oklch(5% 0.01 170 / 0.55);
-  }
+:root[data-theme='dark'] {
+  --color-surface: oklch(19% 0.025 248);
+  --color-surface-raised: oklch(23% 0.028 246);
+  --color-surface-sunken: oklch(16% 0.022 248);
+  --color-ink: oklch(95% 0.008 240);
+  --color-ink-soft: oklch(80% 0.012 240);
+  --color-ink-faint: oklch(68% 0.014 240);
+  --color-line: oklch(30% 0.025 246);
+  --color-line-strong: oklch(56% 0.04 242);
+  --color-accent: oklch(72% 0.085 232);
+  --color-accent-deep: oklch(82% 0.07 230);
+  --color-accent-soft: oklch(30% 0.05 240);
+  --color-accent-mist: oklch(24% 0.035 244);
+  --color-deep: oklch(70% 0.06 238);
+  --color-deep-strong: oklch(82% 0.05 235);
+  --color-deep-soft: oklch(29% 0.04 244);
+  --color-premium: oklch(75% 0.055 238);
+  --color-premium-soft: oklch(30% 0.04 242);
+  --color-premium-ink: oklch(84% 0.05 238);
+  --color-danger: oklch(70% 0.13 25);
+  --color-danger-soft: oklch(28% 0.05 25);
+  --color-on-accent: oklch(17% 0.025 248);
+  --color-on-deep: oklch(17% 0.025 248);
+  --color-glass: oklch(19% 0.025 248 / 0.86);
+  --color-glass-strong: oklch(23% 0.028 246 / 0.92);
+  --shadow-soft:
+    0 1px 2px oklch(8% 0.02 248 / 0.4),
+    0 8px 24px oklch(8% 0.02 248 / 0.45);
+  --shadow-lift:
+    0 2px 6px oklch(8% 0.02 248 / 0.5),
+    0 20px 48px oklch(8% 0.02 248 / 0.55);
 }

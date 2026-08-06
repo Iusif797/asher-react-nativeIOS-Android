@@ -45,7 +45,7 @@ export const MatchResults = ({ answers, onRestart }: MatchResultsProps) => {
                     {formatPrice(specialist.price)} за сессию
                   </p>
                 </div>
-                <Tag tone="warm">Совпадение {percent}%</Tag>
+                <Tag tone="deep">Совпадение {percent}%</Tag>
               </header>
               <div className="matching-result__reasons">
                 <p className="matching-result__why">Почему именно этот специалист:</p>

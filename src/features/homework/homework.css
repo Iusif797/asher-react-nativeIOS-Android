@@ -49,14 +49,14 @@
   color: var(--color-accent-deep);
 }
 
-.homework-task__icon--warm {
-  background: var(--color-warm-soft);
-  color: var(--color-warm-deep);
+.homework-task__icon--deep {
+  background: var(--color-deep-soft);
+  color: var(--color-deep-strong);
 }
 
-.homework-task__icon--gold {
-  background: var(--color-gold-soft);
-  color: var(--color-gold-ink);
+.homework-task__icon--premium {
+  background: var(--color-premium-soft);
+  color: var(--color-premium-ink);
 }
 
 .homework-task__body {

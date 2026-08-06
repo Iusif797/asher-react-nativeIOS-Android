@@ -134,9 +134,9 @@
 }
 
 .programs-cell--current {
-  background: var(--color-warm-soft);
-  color: var(--color-warm-deep);
-  box-shadow: inset 0 0 0 2px var(--color-warm);
+  background: var(--color-deep-soft);
+  color: var(--color-deep-strong);
+  box-shadow: inset 0 0 0 2px var(--color-deep);
 }
 
 .programs-cell--open {

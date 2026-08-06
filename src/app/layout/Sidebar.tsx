@@ -2,6 +2,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { Icon } from '@/components/ui/Icon'
 import { SegmentedControl } from '@/components/ui/SegmentedControl'
 import { useAppStore, type AppMode } from '@/stores/appStore'
+import { ThemeSwitch } from '@/features/settings/ThemeSwitch'
 import { CLIENT_NAV, THERAPIST_NAV } from './nav'
 import emblem from '@/assets/emblem.png'
 
@@ -57,6 +58,7 @@ export const Sidebar = () => {
             { value: 'therapist', label: 'Психолог' },
           ]}
         />
+        <ThemeSwitch />
       </div>
     </aside>
   )

@@ -41,7 +41,7 @@ const MeetingCard = ({ consultation, onPay, onCancel }: MeetingCardProps) => {
             Оплачено
           </Tag>
         ) : (
-          <Tag tone="warm" icon="clock">
+          <Tag tone="deep" icon="clock">
             Ожидает оплаты
           </Tag>
         )}

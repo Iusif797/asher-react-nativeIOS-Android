@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import { Icon, type IconName } from './Icon'
 
-type TagTone = 'neutral' | 'accent' | 'warm' | 'gold' | 'danger'
+type TagTone = 'neutral' | 'accent' | 'deep' | 'premium' | 'danger'
 
 interface TagProps {
   tone?: TagTone

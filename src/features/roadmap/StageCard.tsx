@@ -4,12 +4,12 @@ import { Tag } from '@/components/ui/Tag'
 
 interface StageStatusMeta {
   label: string
-  tone: 'accent' | 'warm' | 'neutral'
+  tone: 'accent' | 'deep' | 'neutral'
 }
 
 const STATUS_META: Record<RoadmapStatus, StageStatusMeta> = {
   done: { label: 'Пройден', tone: 'accent' },
-  active: { label: 'Сейчас', tone: 'warm' },
+  active: { label: 'Сейчас', tone: 'deep' },
   locked: { label: 'Впереди', tone: 'neutral' },
 }
 

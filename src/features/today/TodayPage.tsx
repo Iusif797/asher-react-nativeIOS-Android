@@ -91,7 +91,7 @@ export const TodayPage = () => {
         <article className="card today-program">
           <div className="today-program__label">
             <p className="section-title">Сегодня в программе</p>
-            <Tag tone="warm">День {currentDay} из 30</Tag>
+            <Tag tone="deep">День {currentDay} из 30</Tag>
           </div>
           {day && (
             <>

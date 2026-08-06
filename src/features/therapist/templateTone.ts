@@ -5,8 +5,8 @@ type TagTone = NonNullable<ComponentProps<typeof Tag>['tone']>
 
 const TONE_BY_KIND: Record<string, TagTone> = {
   'Техника': 'accent',
-  'Упражнение': 'warm',
-  'Рефлексия': 'gold',
+  'Упражнение': 'deep',
+  'Рефлексия': 'premium',
   'Материал': 'neutral',
 }
 

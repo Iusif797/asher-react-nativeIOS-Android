@@ -133,8 +133,8 @@
 
 .library-card-kind--video,
 .library-card-kind--practice {
-  background: var(--color-warm-soft);
-  color: var(--color-warm-deep);
+  background: var(--color-deep-soft);
+  color: var(--color-deep-strong);
 }
 
 .library-card-situation {
@@ -330,8 +330,8 @@
 .direction-leaf {
   width: 32px;
   height: 32px;
-  background: var(--color-warm-soft);
-  color: var(--color-warm-deep);
+  background: var(--color-deep-soft);
+  color: var(--color-deep-strong);
 }
 
 .direction-cta {

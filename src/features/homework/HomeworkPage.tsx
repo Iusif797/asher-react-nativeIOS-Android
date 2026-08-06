@@ -11,11 +11,11 @@ import './homework.css'
 
 type HomeworkFilter = 'all' | 'active' | 'done'
 
-const KIND_META: Record<HomeworkKind, { label: string; icon: IconName; tone: 'accent' | 'warm' | 'gold' }> = {
+const KIND_META: Record<HomeworkKind, { label: string; icon: IconName; tone: 'accent' | 'deep' | 'premium' }> = {
   exercise: { label: 'Упражнение', icon: 'tasks', tone: 'accent' },
-  reflection: { label: 'Размышление', icon: 'journal', tone: 'warm' },
+  reflection: { label: 'Размышление', icon: 'journal', tone: 'deep' },
   technique: { label: 'Техника', icon: 'leaf', tone: 'accent' },
-  material: { label: 'Материал', icon: 'fileText', tone: 'gold' },
+  material: { label: 'Материал', icon: 'fileText', tone: 'premium' },
 }
 
 const STEPS = [
