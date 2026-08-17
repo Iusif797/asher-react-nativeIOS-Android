@@ -90,17 +90,6 @@
   color: var(--color-ink-soft);
 }
 
-.booking-card__rating {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-1);
-  margin-top: var(--space-1);
-}
-
-.booking-card__rating svg {
-  color: var(--color-premium);
-}
-
 .booking-card__price {
   display: flex;
   flex-direction: column;

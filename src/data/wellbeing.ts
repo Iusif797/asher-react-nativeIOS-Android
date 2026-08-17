@@ -21,7 +21,7 @@ export const SEED_HOMEWORK: HomeworkTask[] = [
     kind: 'technique',
     description:
       'Три цикла: вдох на 4 счёта, задержка на 7, выдох на 8. Лучше сидя, с закрытыми глазами. Отметьте, как меняется состояние.',
-    assignedBy: 'Лейла Мамедова',
+    assignedBy: 'Людмила Казакова',
     done: true,
   },
   {
@@ -30,7 +30,7 @@ export const SEED_HOMEWORK: HomeworkTask[] = [
     kind: 'exercise',
     description:
       'В течение недели записывайте ситуации, в которых тревога усиливалась: что происходило, о чём подумали, что почувствовали в теле.',
-    assignedBy: 'Лейла Мамедова',
+    assignedBy: 'Людмила Казакова',
     done: true,
   },
   {
@@ -39,7 +39,7 @@ export const SEED_HOMEWORK: HomeworkTask[] = [
     kind: 'reflection',
     description:
       'Что для вас значит «жить спокойно»? Опишите один обычный день такой жизни — от утра до вечера. Обсудим на следующей сессии.',
-    assignedBy: 'Лейла Мамедова',
+    assignedBy: 'Людмила Казакова',
     done: false,
   },
   {
@@ -48,7 +48,7 @@ export const SEED_HOMEWORK: HomeworkTask[] = [
     kind: 'material',
     description:
       'Прочитайте статью в библиотеке (раздел «Постоянно тревожусь») и отметьте два тезиса, которые отозвались сильнее всего.',
-    assignedBy: 'Лейла Мамедова',
+    assignedBy: 'Людмила Казакова',
     done: false,
   },
 ]

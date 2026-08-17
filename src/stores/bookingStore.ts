@@ -44,18 +44,17 @@ export const useBookingStore = create<BookingState>()(
     }),
     {
       name: 'asher:bookings',
-      version: 1,
+      version: 2,
       migrate: (persistedState) => {
-        const state = persistedState as { consultations: Consultation[] }
-        return {
-          consultations: (state.consultations ?? SEED_CONSULTATIONS).map(
-            (consultation) => {
-              const specialist = specialistById(consultation.specialistId)
-              if (!specialist) return consultation
-              return { ...consultation, price: specialist.price }
-            },
-          ),
-        }
+        const state = persistedState as { consultations?: Consultation[] }
+        const valid = (state.consultations ?? [])
+          .map((consultation) => {
+            const specialist = specialistById(consultation.specialistId)
+            if (!specialist) return null
+            return { ...consultation, price: specialist.price }
+          })
+          .filter((consultation): consultation is Consultation => consultation !== null)
+        return { consultations: valid.length > 0 ? valid : SEED_CONSULTATIONS }
       },
     },
   ),

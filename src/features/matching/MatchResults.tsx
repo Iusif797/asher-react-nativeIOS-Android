@@ -5,7 +5,7 @@ import { Icon } from '@/components/ui/Icon'
 import { Tag } from '@/components/ui/Tag'
 import { SPECIALISTS, specialistById } from '@/data/specialists'
 import { scoreSpecialists, type QuizAnswers } from '@/data/quiz'
-import { formatPrice, formatYears } from '@/lib/format'
+import { formatExperience, formatPriceFrom } from '@/lib/format'
 
 interface MatchResultsProps {
   answers: QuizAnswers
@@ -41,8 +41,8 @@ export const MatchResults = ({ answers, onRestart }: MatchResultsProps) => {
                   <h4>{specialist.name}</h4>
                   <p>{specialist.role}</p>
                   <p className="matching-result__meta">
-                    Опыт {formatYears(specialist.experienceYears)} ·{' '}
-                    {formatPrice(specialist.price)} за сессию
+                    {formatExperience(specialist.experienceYears)} ·{' '}
+                    {formatPriceFrom(specialist.price)} за сессию
                   </p>
                 </div>
                 <Tag tone="deep">Совпадение {percent}%</Tag>

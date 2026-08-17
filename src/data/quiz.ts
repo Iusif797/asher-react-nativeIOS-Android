@@ -36,15 +36,6 @@ export const QUIZ_QUESTIONS: QuizQuestion[] = [
     ],
   },
   {
-    id: 'q-gender',
-    question: 'С кем вам будет комфортнее работать?',
-    options: [
-      { value: 'female', label: 'С женщиной' },
-      { value: 'male', label: 'С мужчиной' },
-      { value: 'any', label: 'Не имеет значения' },
-    ],
-  },
-  {
     id: 'q-format',
     question: 'Какой формат встреч удобнее?',
     options: [
@@ -63,20 +54,11 @@ export const QUIZ_QUESTIONS: QuizQuestion[] = [
     ],
   },
   {
-    id: 'q-language',
-    question: 'На каком языке удобнее общаться?',
-    options: [
-      { value: 'Русский', label: 'Русский' },
-      { value: 'Азербайджанский', label: 'Азербайджанский' },
-      { value: 'Английский', label: 'Английский' },
-    ],
-  },
-  {
     id: 'q-budget',
     question: 'Какой бюджет на одну сессию комфортен?',
     options: [
-      { value: '12000', label: 'До 12 000 ₽' },
-      { value: '16000', label: 'До 16 000 ₽' },
+      { value: '5000', label: 'До 5 000 ₽' },
+      { value: '8000', label: 'До 8 000 ₽' },
       { value: '999999', label: 'Бюджет не главное' },
     ],
   },
@@ -104,8 +86,6 @@ export interface QuizAnswers {
   [questionId: string]: string
 }
 
-const FEMALE_IDS = ['sp-leyla', 'sp-aysel', 'sp-anna', 'sp-nigar']
-
 export interface MatchScore {
   specialistId: string
   score: number
@@ -120,7 +100,7 @@ export const scoreSpecialists = (
     formats: SessionFormat[]
     languages: string[]
     price: number
-    experienceYears: number
+    experienceYears?: number
   }[],
 ): MatchScore[] =>
   specialists
@@ -137,30 +117,16 @@ export const scoreSpecialists = (
         score += 15
         reasons.push(format === 'online' ? 'Работает онлайн' : 'Принимает очно в центре')
       }
-      const gender = answers['q-gender']
-      if (gender === 'female' && FEMALE_IDS.includes(sp.id)) {
-        score += 12
-        reasons.push('Психолог-женщина, как вы хотели')
-      }
-      if (gender === 'male' && !FEMALE_IDS.includes(sp.id)) {
-        score += 12
-        reasons.push('Психолог-мужчина, как вы хотели')
-      }
-      const language = answers['q-language']
-      if (language && sp.languages.includes(language)) {
-        score += 10
-        reasons.push(`Консультирует на языке: ${language.toLowerCase()}`)
-      }
       const budget = Number(answers['q-budget'] ?? 999999)
       if (sp.price <= budget) {
         score += 8
         reasons.push('Стоимость в рамках вашего бюджета')
       }
-      if (answers['q-experience'] === 'none' && sp.experienceYears >= 10) {
+      if (answers['q-experience'] === 'none' && (sp.experienceYears ?? 0) >= 10) {
         score += 6
         reasons.push('Большой опыт — бережно введёт в терапию')
       }
-      if (answers['q-impact'] === 'strong' && sp.experienceYears >= 12) {
+      if (answers['q-impact'] === 'strong' && (sp.experienceYears ?? 0) >= 12) {
         score += 6
         reasons.push('Опыт работы со сложными состояниями')
       }

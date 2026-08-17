@@ -11,7 +11,7 @@ export const ROADMAP_STAGES: RoadmapStage[] = [
     status: 'done',
     items: [
       { label: 'Опросник самонаблюдения', done: true },
-      { label: 'Первичная консультация с Лейлой Мамедовой', done: true },
+      { label: 'Первичная консультация с Людмилой Казаковой', done: true },
       { label: 'Сформулирован запрос и цели работы', done: true },
     ],
   },

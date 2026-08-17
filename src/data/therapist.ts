@@ -1,7 +1,7 @@
 import type { ClientCard } from '@/lib/types'
 import { addDays, atTime } from '@/lib/dates'
 
-export const THERAPIST_NAME = 'Лейла Мамедова'
+export const THERAPIST_NAME = 'Людмила Казакова'
 
 export const CLIENT_CARDS: ClientCard[] = [
   {

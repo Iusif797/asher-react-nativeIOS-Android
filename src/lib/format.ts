@@ -20,6 +20,12 @@ export const pluralize = (
 export const formatYears = (years: number): string =>
   pluralize(years, 'год', 'года', 'лет')
 
+export const formatPriceFrom = (value: number): string =>
+  `от ${formatPrice(value)}`
+
+export const formatExperience = (years?: number): string =>
+  years ? `Опыт ${formatYears(years)}` : 'Многолетняя практика'
+
 export const formatSessions = (count: number): string =>
   pluralize(count, 'сессия', 'сессии', 'сессий')
 

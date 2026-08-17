@@ -25,13 +25,11 @@ export interface Specialist {
   id: string
   name: string
   role: string
-  experienceYears: number
+  experienceYears?: number
   price: number
   formats: SessionFormat[]
   directions: DirectionId[]
   languages: string[]
-  rating: number
-  reviewsCount: number
   about: string
   hue: number
 }

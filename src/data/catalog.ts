@@ -5,7 +5,7 @@ export const GROUPS: GroupEvent[] = [
   {
     id: 'grp-anxiety',
     title: 'Группа поддержки «Спокойствие внутри»',
-    leader: 'Лейла Мамедова',
+    leader: 'Людмила Казакова',
     dateISO: atTime(addDays(new Date(), 3), 19).toISOString(),
     seatsLeft: 4,
     format: 'online',
@@ -13,7 +13,7 @@ export const GROUPS: GroupEvent[] = [
   {
     id: 'grp-parents',
     title: 'Родительский клуб: подростки без войны',
-    leader: 'Нигяр Сафарова',
+    leader: 'Теона Хаметова',
     dateISO: atTime(addDays(new Date(), 5), 18, 30).toISOString(),
     seatsLeft: 7,
     format: 'inperson',
@@ -21,7 +21,7 @@ export const GROUPS: GroupEvent[] = [
   {
     id: 'grp-burnout',
     title: 'Терапевтическая группа «Возвращение энергии»',
-    leader: 'Марат Исмаилов',
+    leader: 'Наталья Катречко',
     dateISO: atTime(addDays(new Date(), 8), 19).toISOString(),
     seatsLeft: 2,
     format: 'online',

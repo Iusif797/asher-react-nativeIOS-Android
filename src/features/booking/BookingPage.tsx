@@ -12,8 +12,6 @@ import './booking.css'
 
 type FormatFilter = 'all' | 'online' | 'inperson'
 
-const LANGUAGES = ['Русский', 'Азербайджанский', 'Английский']
-
 export const BookingPage = () => {
   const { specialists, isLive } = useSpecialists()
   const [searchParams, setSearchParams] = useSearchParams()
@@ -34,6 +32,8 @@ export const BookingPage = () => {
     if (searchParams.get('specialist')) setSearchParams({}, { replace: true })
   }
 
+  const languages = [...new Set(specialists.flatMap((s) => s.languages))]
+
   const filtered = specialists.filter((s) => {
     if (direction !== 'all' && !s.directions.some((d) => d === direction)) return false
     if (format !== 'all' && !s.formats.includes(format)) return false
@@ -47,8 +47,8 @@ export const BookingPage = () => {
         <p className="page-kicker">Запись</p>
         <h1 className="page-title">Выберите своего специалиста</h1>
         <p className="page-lead">
-          Никаких скрытых условий: свободное время, формат, стоимость, опыт,
-          направления работы, языки и отзывы — всё видно сразу.
+          Никаких скрытых условий: свободное время, формат, стоимость, опыт и
+          направления работы — всё видно сразу.
         </p>
       </header>
       <div className="booking-filters">
@@ -79,20 +79,22 @@ export const BookingPage = () => {
               { value: 'inperson', label: 'Очно' },
             ]}
           />
-          <div className="booking-filters__scroll" role="group" aria-label="Язык">
-            {['all', ...LANGUAGES].map((lang) => (
-              <button
-                key={lang}
-                className={
-                  lang === language ? 'chip booking-filters__chip--active' : 'chip'
-                }
-                aria-pressed={lang === language}
-                onClick={() => setLanguage(lang)}
-              >
-                {lang === 'all' ? 'Любой язык' : lang}
-              </button>
-            ))}
-          </div>
+          {languages.length > 1 && (
+            <div className="booking-filters__scroll" role="group" aria-label="Язык">
+              {['all', ...languages].map((lang) => (
+                <button
+                  key={lang}
+                  className={
+                    lang === language ? 'chip booking-filters__chip--active' : 'chip'
+                  }
+                  aria-pressed={lang === language}
+                  onClick={() => setLanguage(lang)}
+                >
+                  {lang === 'all' ? 'Любой язык' : lang}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </div>
       <p className="booking-count">
