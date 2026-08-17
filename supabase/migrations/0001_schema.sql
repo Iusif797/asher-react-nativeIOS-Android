@@ -71,7 +71,7 @@ create table payments (
   client_id uuid not null references profiles (id),
   consultation_id uuid references consultations (id),
   amount numeric(10, 2) not null,
-  currency text not null default 'AZN',
+  currency text not null default 'RUB',
   provider text not null,
   provider_ref text,
   status payment_status not null default 'pending',

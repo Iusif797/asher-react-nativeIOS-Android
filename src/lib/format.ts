@@ -1,4 +1,4 @@
-export const CURRENCY = '₼'
+export const CURRENCY = '₽'
 
 export const formatPrice = (value: number): string =>
   `${value.toLocaleString('ru-RU')} ${CURRENCY}`

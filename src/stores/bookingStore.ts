@@ -42,7 +42,22 @@ export const useBookingStore = create<BookingState>()(
           ),
         })),
     }),
-    { name: 'asher:bookings' },
+    {
+      name: 'asher:bookings',
+      version: 1,
+      migrate: (persistedState) => {
+        const state = persistedState as { consultations: Consultation[] }
+        return {
+          consultations: (state.consultations ?? SEED_CONSULTATIONS).map(
+            (consultation) => {
+              const specialist = specialistById(consultation.specialistId)
+              if (!specialist) return consultation
+              return { ...consultation, price: specialist.price }
+            },
+          ),
+        }
+      },
+    },
   ),
 )
 

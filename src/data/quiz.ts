@@ -75,9 +75,9 @@ export const QUIZ_QUESTIONS: QuizQuestion[] = [
     id: 'q-budget',
     question: 'Какой бюджет на одну сессию комфортен?',
     options: [
-      { value: '70', label: 'До 70 ₼' },
-      { value: '90', label: 'До 90 ₼' },
-      { value: '999', label: 'Бюджет не главное' },
+      { value: '12000', label: 'До 12 000 ₽' },
+      { value: '16000', label: 'До 16 000 ₽' },
+      { value: '999999', label: 'Бюджет не главное' },
     ],
   },
   {
@@ -151,7 +151,7 @@ export const scoreSpecialists = (
         score += 10
         reasons.push(`Консультирует на языке: ${language.toLowerCase()}`)
       }
-      const budget = Number(answers['q-budget'] ?? 999)
+      const budget = Number(answers['q-budget'] ?? 999999)
       if (sp.price <= budget) {
         score += 8
         reasons.push('Стоимость в рамках вашего бюджета')

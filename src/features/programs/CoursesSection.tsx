@@ -4,7 +4,7 @@ import { COURSES } from '@/data/catalog'
 import { formatPrice, pluralize } from '@/lib/format'
 import type { Course } from '@/lib/types'
 
-const COURSE_PRICE = 45
+const COURSE_PRICE = 2900
 
 const CourseFoot = ({ course }: { course: Course }) => {
   if (course.owned) {
