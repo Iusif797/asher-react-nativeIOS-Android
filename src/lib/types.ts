@@ -43,7 +43,6 @@ export interface Consultation {
   format: SessionFormat
   status: ConsultationStatus
   price: number
-  paid: boolean
   topic: string
 }
 

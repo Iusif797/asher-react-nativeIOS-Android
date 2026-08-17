@@ -16,6 +16,7 @@ interface AuthState {
   signUp: (fullName: string, email: string, password: string) => Promise<void>
   continueAsGuest: () => void
   signOut: () => Promise<void>
+  deleteAccount: () => Promise<boolean>
 }
 
 const GUEST_KEY = 'asher:guest'
@@ -106,6 +107,19 @@ export const useAuthStore = create<AuthState>()((set) => {
       await supabase?.auth.signOut()
       localStorage.removeItem(GUEST_KEY)
       set({ status: 'signedOut', userId: null, fullName: null, error: null })
+    },
+    deleteAccount: async () => {
+      if (!supabase) return false
+      set({ pending: true, error: null })
+      const { error } = await supabase.rpc('delete_my_account')
+      if (error) {
+        set({ pending: false, error: 'Не получилось удалить аккаунт. Попробуйте позже.' })
+        return false
+      }
+      await supabase.auth.signOut()
+      localStorage.removeItem(GUEST_KEY)
+      set({ status: 'signedOut', userId: null, fullName: null, pending: false, error: null })
+      return true
     },
   }
 })

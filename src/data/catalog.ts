@@ -62,4 +62,3 @@ export const SUBSCRIPTION_PERKS = [
   'Закрытые эфиры «вопрос — ответ»',
 ]
 
-export const SUBSCRIPTION_PRICE = 990

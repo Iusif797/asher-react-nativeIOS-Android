@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Avatar } from '@/components/ui/Avatar'
 import { Button } from '@/components/ui/Button'
@@ -10,15 +9,13 @@ import { formatDayTime } from '@/lib/dates'
 import type { Consultation } from '@/lib/types'
 import { selectUpcoming, useBookingStore } from '@/stores/bookingStore'
 import { FormatTag } from './FormatTag'
-import { PaymentModal } from './PaymentModal'
 
 interface MeetingCardProps {
   consultation: Consultation
-  onPay: (consultation: Consultation) => void
   onCancel: (id: string) => void
 }
 
-const MeetingCard = ({ consultation, onPay, onCancel }: MeetingCardProps) => {
+const MeetingCard = ({ consultation, onCancel }: MeetingCardProps) => {
   const specialist = specialistById(consultation.specialistId)
   if (!specialist) return null
   return (
@@ -36,22 +33,11 @@ const MeetingCard = ({ consultation, onPay, onCancel }: MeetingCardProps) => {
           {formatDayTime(consultation.dateISO)}
         </span>
         <FormatTag format={consultation.format} />
-        {consultation.paid ? (
-          <Tag tone="accent" icon="check">
-            Оплачено
-          </Tag>
-        ) : (
-          <Tag tone="deep" icon="clock">
-            Ожидает оплаты
-          </Tag>
-        )}
+        <Tag tone="neutral" icon="receipt">
+          Оплата через администратора
+        </Tag>
       </div>
       <div className="account-meeting__actions">
-        {!consultation.paid && (
-          <Button size="sm" icon="receipt" onClick={() => onPay(consultation)}>
-            Оплатить
-          </Button>
-        )}
         <Button variant="ghost" size="sm" onClick={() => onCancel(consultation.id)}>
           Отменить запись
         </Button>
@@ -63,18 +49,10 @@ const MeetingCard = ({ consultation, onPay, onCancel }: MeetingCardProps) => {
 export const UpcomingMeetings = () => {
   const upcoming = useBookingStore(selectUpcoming)
   const cancel = useBookingStore((state) => state.cancel)
-  const markPaid = useBookingStore((state) => state.markPaid)
-  const [paying, setPaying] = useState<Consultation | null>(null)
 
   const cancelWithConfirm = (id: string) => {
     if (!window.confirm('Отменить запись на консультацию?')) return
     cancel(id)
-  }
-
-  const completePayment = () => {
-    if (!paying) return
-    markPaid(paying.id)
-    setPaying(null)
   }
 
   return (
@@ -97,17 +75,11 @@ export const UpcomingMeetings = () => {
             <MeetingCard
               key={consultation.id}
               consultation={consultation}
-              onPay={setPaying}
               onCancel={cancelWithConfirm}
             />
           ))}
         </div>
       )}
-      <PaymentModal
-        consultation={paying}
-        onClose={() => setPaying(null)}
-        onPay={completePayment}
-      />
     </section>
   )
 }

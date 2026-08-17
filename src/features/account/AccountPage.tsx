@@ -50,6 +50,26 @@ const ProfileCard = () => {
   )
 }
 
+const DangerZone = () => {
+  const status = useAuthStore((s) => s.status)
+  const deleteAccount = useAuthStore((s) => s.deleteAccount)
+  if (status !== 'signedIn') return null
+  const confirmDeletion = async () => {
+    const approved = window.confirm(
+      'Удалить аккаунт навсегда? Записи, дневники и прогресс будут стёрты без возможности восстановления.',
+    )
+    if (!approved) return
+    await deleteAccount()
+  }
+  return (
+    <div className="account-danger">
+      <button className="account-danger__link" onClick={() => void confirmDeletion()}>
+        Удалить аккаунт и все данные
+      </button>
+    </div>
+  )
+}
+
 const TeamsCard = () => (
   <div className="account-teams card">
     <span className="account-teams__icon">
@@ -87,5 +107,6 @@ export const AccountPage = () => (
         <TeamsCard />
       </div>
     </div>
+    <DangerZone />
   </section>
 )

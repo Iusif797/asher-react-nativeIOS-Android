@@ -1,13 +1,10 @@
-import { Button } from '@/components/ui/Button'
 import { Icon } from '@/components/ui/Icon'
 import { Tag } from '@/components/ui/Tag'
-import { SUBSCRIPTION_PERKS, SUBSCRIPTION_PRICE } from '@/data/catalog'
-import { formatPrice } from '@/lib/format'
+import { SUBSCRIPTION_PERKS } from '@/data/catalog'
 import { useAppStore } from '@/stores/appStore'
 
 export const SubscriptionCard = () => {
   const subscriptionActive = useAppStore((state) => state.subscriptionActive)
-  const activateSubscription = useAppStore((state) => state.activateSubscription)
 
   return (
     <section className="card programs-subscription">
@@ -33,14 +30,10 @@ export const SubscriptionCard = () => {
         ))}
       </ul>
       <footer className="programs-subscription-foot">
-        <p className="programs-price">
-          <strong>{formatPrice(SUBSCRIPTION_PRICE)}</strong>
-          <span>в месяц</span>
-        </p>
         {!subscriptionActive && (
-          <Button variant="deep" size="lg" onClick={activateSubscription}>
-            Оформить подписку
-          </Button>
+          <Tag tone="neutral" icon="sparkle">
+            Оформление скоро появится в приложении
+          </Tag>
         )}
       </footer>
     </section>

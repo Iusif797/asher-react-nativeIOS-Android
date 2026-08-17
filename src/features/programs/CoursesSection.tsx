@@ -1,10 +1,9 @@
 import { Button } from '@/components/ui/Button'
 import { ProgressBar } from '@/components/ui/Progress'
+import { Tag } from '@/components/ui/Tag'
 import { COURSES } from '@/data/catalog'
-import { formatPrice, pluralize } from '@/lib/format'
+import { pluralize } from '@/lib/format'
 import type { Course } from '@/lib/types'
-
-const COURSE_PRICE = 2900
 
 const CourseFoot = ({ course }: { course: Course }) => {
   if (course.owned) {
@@ -14,14 +13,7 @@ const CourseFoot = ({ course }: { course: Course }) => {
       </Button>
     )
   }
-  return (
-    <>
-      <span className="programs-course-price">{formatPrice(COURSE_PRICE)}</span>
-      <Button variant="outline" size="sm" disabled title="Демо">
-        Купить курс
-      </Button>
-    </>
-  )
+  return <Tag tone="neutral">Скоро в продаже</Tag>
 }
 
 export const CoursesSection = () => (

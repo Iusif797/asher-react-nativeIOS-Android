@@ -9,7 +9,6 @@ interface BookingState {
   consultations: Consultation[]
   book: (specialistId: string, slotISO: string, format: SessionFormat) => void
   cancel: (id: string) => void
-  markPaid: (id: string) => void
 }
 
 export const useBookingStore = create<BookingState>()(
@@ -27,7 +26,6 @@ export const useBookingStore = create<BookingState>()(
             format,
             status: 'upcoming',
             price: specialist.price,
-            paid: false,
             topic: 'Консультация',
           }
           return { consultations: [consultation, ...state.consultations] }
@@ -35,12 +33,6 @@ export const useBookingStore = create<BookingState>()(
       cancel: (id) =>
         set((state) => ({
           consultations: state.consultations.filter((c) => c.id !== id),
-        })),
-      markPaid: (id) =>
-        set((state) => ({
-          consultations: state.consultations.map((c) =>
-            c.id === id ? { ...c, paid: true } : c,
-          ),
         })),
     }),
     {
