@@ -5,6 +5,15 @@ import { App } from './app/App'
 import './styles/global.css'
 import './components/ui/ui.css'
 
+const SPLASH_MIN_VISIBLE_MS = 900
+
+const hideSplash = () => {
+  const splash = document.getElementById('splash')
+  if (!splash) return
+  splash.classList.add('splash--hidden')
+  splash.addEventListener('transitionend', () => splash.remove(), { once: true })
+}
+
 const rootElement = document.getElementById('root')
 if (rootElement) {
   createRoot(rootElement).render(
@@ -14,4 +23,5 @@ if (rootElement) {
       </BrowserRouter>
     </StrictMode>,
   )
+  window.setTimeout(hideSplash, SPLASH_MIN_VISIBLE_MS)
 }
