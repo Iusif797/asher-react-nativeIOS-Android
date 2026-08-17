@@ -17,24 +17,35 @@ const ProfileCard = () => {
   const status = useAuthStore((s) => s.status)
   const fullName = useAuthStore((s) => s.fullName)
   const signOut = useAuthStore((s) => s.signOut)
+  const isSignedIn = status === 'signedIn'
   const displayName = fullName ?? USER_NAME
   return (
     <div className="account-profile card">
-      <Avatar name={displayName} hue={200} size={64} />
+      <Avatar name={displayName} hue={200} size={56} />
       <div className="account-profile__info">
-        <h2 className="account-profile__name">{displayName}</h2>
+        <div className="account-profile__heading">
+          <h2 className="account-profile__name">{displayName}</h2>
+          {subscriptionActive && (
+            <Tag tone="premium" icon="sparkle">
+              ASHER+
+            </Tag>
+          )}
+        </div>
         <p className="account-profile__note">
-          {status === 'signedIn' ? 'Аккаунт ASHER' : 'Гостевой режим — записи хранятся только на этом устройстве'}
+          {isSignedIn ? 'Аккаунт ASHER' : 'Гостевой режим — записи хранятся только на этом устройстве'}
         </p>
       </div>
-      {subscriptionActive && (
-        <Tag tone="premium" icon="sparkle">
-          ASHER+
-        </Tag>
-      )}
-      <Button variant="ghost" size="sm" icon="arrowLeft" onClick={() => void signOut()}>
-        {status === 'signedIn' ? 'Выйти' : 'Войти в аккаунт'}
-      </Button>
+      <div className="account-profile__action">
+        <Button
+          variant="outline"
+          size="sm"
+          icon={isSignedIn ? 'arrowLeft' : undefined}
+          iconAfter={isSignedIn ? undefined : 'arrowRight'}
+          onClick={() => void signOut()}
+        >
+          {isSignedIn ? 'Выйти' : 'Войти в аккаунт'}
+        </Button>
+      </div>
     </div>
   )
 }
