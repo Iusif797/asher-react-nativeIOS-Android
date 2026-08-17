@@ -1,8 +1,9 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import type { Consultation, SessionFormat } from '@/lib/types'
-import { SEED_CONSULTATIONS } from '@/data/account'
 import { specialistById } from '@/data/specialists'
+
+const DEMO_SEED_IDS = new Set(['cons-1', 'cons-2', 'cons-3', 'cons-4'])
 
 interface BookingState {
   consultations: Consultation[]
@@ -14,7 +15,7 @@ interface BookingState {
 export const useBookingStore = create<BookingState>()(
   persist(
     (set) => ({
-      consultations: SEED_CONSULTATIONS,
+      consultations: [],
       book: (specialistId, slotISO, format) =>
         set((state) => {
           const specialist = specialistById(specialistId)
@@ -44,17 +45,18 @@ export const useBookingStore = create<BookingState>()(
     }),
     {
       name: 'asher:bookings',
-      version: 2,
+      version: 3,
       migrate: (persistedState) => {
         const state = persistedState as { consultations?: Consultation[] }
-        const valid = (state.consultations ?? [])
+        const real = (state.consultations ?? [])
+          .filter((consultation) => !DEMO_SEED_IDS.has(consultation.id))
           .map((consultation) => {
             const specialist = specialistById(consultation.specialistId)
             if (!specialist) return null
             return { ...consultation, price: specialist.price }
           })
           .filter((consultation): consultation is Consultation => consultation !== null)
-        return { consultations: valid.length > 0 ? valid : SEED_CONSULTATIONS }
+        return { consultations: real }
       },
     },
   ),

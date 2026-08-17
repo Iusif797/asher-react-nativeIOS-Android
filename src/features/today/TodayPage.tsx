@@ -3,7 +3,7 @@ import { Avatar } from '@/components/ui/Avatar'
 import { Icon, type IconName } from '@/components/ui/Icon'
 import { ProgressRing } from '@/components/ui/Progress'
 import { Tag } from '@/components/ui/Tag'
-import { USER_NAME } from '@/data/account'
+
 import { programById } from '@/data/programs'
 import { ROADMAP_STAGES } from '@/data/roadmap'
 import { specialistById } from '@/data/specialists'
@@ -52,7 +52,8 @@ export const TodayPage = () => {
           {formatWeekday(nowISO)}, {formatDay(nowISO)}
         </p>
         <h1 className="today__title">
-          {greetingByHour(new Date().getHours())}, {fullName ?? USER_NAME}
+          {greetingByHour(new Date().getHours())}
+          {fullName ? `, ${fullName}` : ''}
         </h1>
         <p className="page-lead">Ваше пространство психологического благополучия.</p>
       </header>

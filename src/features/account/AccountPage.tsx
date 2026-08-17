@@ -3,7 +3,7 @@ import { Avatar } from '@/components/ui/Avatar'
 import { Button } from '@/components/ui/Button'
 import { Icon } from '@/components/ui/Icon'
 import { Tag } from '@/components/ui/Tag'
-import { USER_NAME } from '@/data/account'
+import { GUEST_NAME } from '@/data/account'
 import { useAppStore } from '@/stores/appStore'
 import { useAuthStore } from '@/stores/authStore'
 import { AdminChat } from './AdminChat'
@@ -18,7 +18,7 @@ const ProfileCard = () => {
   const fullName = useAuthStore((s) => s.fullName)
   const signOut = useAuthStore((s) => s.signOut)
   const isSignedIn = status === 'signedIn'
-  const displayName = fullName ?? USER_NAME
+  const displayName = fullName ?? GUEST_NAME
   return (
     <div className="account-profile card">
       <Avatar name={displayName} hue={200} size={56} />
