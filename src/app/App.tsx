@@ -18,6 +18,7 @@ import { AssistantPage } from '@/features/assistant/AssistantPage'
 import { AccountPage } from '@/features/account/AccountPage'
 import { TherapistPage } from '@/features/therapist/TherapistPage'
 import { B2BPage } from '@/features/b2b/B2BPage'
+import { CrisisPage } from '@/features/crisis/CrisisPage'
 
 export const App = () => {
   const status = useAuthStore((s) => s.status)
@@ -51,6 +52,7 @@ const AppRoutes = () => (
       <Route path="/account" element={<AccountPage />} />
       <Route path="/therapist" element={<TherapistPage />} />
       <Route path="/b2b" element={<B2BPage />} />
+      <Route path="/crisis" element={<CrisisPage />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Route>
   </Routes>

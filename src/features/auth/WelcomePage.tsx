@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/Button'
 import { Icon } from '@/components/ui/Icon'
 import { SegmentedControl } from '@/components/ui/SegmentedControl'
 import { useAuthStore } from '@/stores/authStore'
+import { CrisisOverlay } from '@/features/crisis/CrisisOverlay'
 import emblem from '@/assets/emblem.png'
 import './auth.css'
 
@@ -15,6 +16,7 @@ export const WelcomePage = () => {
   const pending = useAuthStore((s) => s.pending)
   const error = useAuthStore((s) => s.error)
   const [mode, setMode] = useState<AuthMode>('signin')
+  const [crisisOpen, setCrisisOpen] = useState(false)
   const [fullName, setFullName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -105,10 +107,15 @@ export const WelcomePage = () => {
           Посмотреть без аккаунта
           <Icon name="chevronRight" size={15} strokeWidth={2} />
         </button>
+        <button className="crisis-trigger" onClick={() => setCrisisOpen(true)}>
+          <Icon name="bell" size={15} strokeWidth={2} />
+          Нужна срочная помощь
+        </button>
         <p className="welcome__note">
           Ваши записи видите только вы: доступ защищён на уровне базы данных.
         </p>
       </div>
+      {crisisOpen && <CrisisOverlay onClose={() => setCrisisOpen(false)} />}
     </div>
   )
 }

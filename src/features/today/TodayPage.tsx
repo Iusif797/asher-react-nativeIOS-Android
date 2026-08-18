@@ -13,6 +13,7 @@ import { useAuthStore } from '@/stores/authStore'
 import { selectHomeworkProgress, useHomeworkStore } from '@/stores/homeworkStore'
 import { selectCurrentDay, useProgramStore } from '@/stores/programStore'
 import { MoodCheckin } from './MoodCheckin'
+import '@/features/crisis/crisis.css'
 import './today.css'
 
 const roadmapProgress = () => {
@@ -56,6 +57,10 @@ export const TodayPage = () => {
           {fullName ? `, ${fullName}` : ''}
         </h1>
         <p className="page-lead">Ваше пространство психологического благополучия.</p>
+        <Link className="crisis-trigger" to="/crisis">
+          <Icon name="bell" size={15} strokeWidth={2} />
+          Нужна срочная помощь
+        </Link>
       </header>
       <div className="today__grid">
         <MoodCheckin />
