@@ -124,7 +124,7 @@ export const TodayPage = () => {
       </div>
       <div className="today__quick">
         {quickLinks.map((link) => (
-          <Link className="card today-quick" to={link.to} key={link.to}>
+          <Link className="card today-quick" to={link.to} key={link.to} data-accent={link.icon}>
             <span className="today-quick__icon">
               <Icon name={link.icon} size={20} />
             </span>

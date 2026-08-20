@@ -1,11 +1,24 @@
 import { useMemo, useState } from 'react'
 import { LIBRARY, librarySituations } from '@/data/library'
-import type { LibraryKind } from '@/lib/types'
+import type { LibraryItem, LibraryKind } from '@/lib/types'
 import { EmptyState } from '@/components/ui/EmptyState'
 import { LibraryFilters } from './LibraryFilters'
 import { LibraryCard } from './LibraryCard'
 import { DirectionsSection } from './DirectionsSection'
 import './library.css'
+
+const MIN_GROUP_SIZE = 2
+
+type SituationGroup = [string, LibraryItem[]]
+
+const groupBySituation = (items: LibraryItem[]): Array<[string, LibraryItem[]]> =>
+  items.reduce<Array<[string, LibraryItem[]]>>((groups, item) => {
+    const group = groups.find(([situation]) => situation === item.situation)
+    if (!group) return [...groups, [item.situation, [item]]]
+    return groups.map((entry) =>
+      entry === group ? [entry[0], [...entry[1], item]] : entry,
+    )
+  }, [])
 
 export const LibraryPage = () => {
   const [situation, setSituation] = useState<string | null>(null)
@@ -20,6 +33,15 @@ export const LibraryPage = () => {
       ),
     [situation, kind],
   )
+
+  const groups = useMemo<SituationGroup[]>(
+    () => (situation === null ? groupBySituation(items) : []),
+    [items, situation],
+  )
+  const mainGroups = groups.filter(([, group]) => group.length >= MIN_GROUP_SIZE)
+  const looseItems = groups
+    .filter(([, group]) => group.length < MIN_GROUP_SIZE)
+    .flatMap(([, group]) => group)
 
   return (
     <section className="page">
@@ -46,11 +68,40 @@ export const LibraryPage = () => {
             text="По выбранным фильтрам материалов пока нет. Попробуйте другую ситуацию или формат."
           />
         </div>
-      ) : (
-        <div className="library-grid">
+      ) : situation !== null ? (
+        <div className="library-grid library-grid--flat">
           {items.map((item) => (
-            <LibraryCard key={item.id} item={item} />
+            <LibraryCard key={item.id} item={item} showSituation={false} />
           ))}
+        </div>
+      ) : (
+        <div className="library-groups">
+          {mainGroups.map(([groupSituation, groupItems]) => (
+            <section className="library-group" key={groupSituation}>
+              <div className="library-group-head">
+                <h2 className="library-group-title">{groupSituation}</h2>
+                <span className="library-group-count">{groupItems.length}</span>
+              </div>
+              <div className="library-grid">
+                {groupItems.map((item) => (
+                  <LibraryCard key={item.id} item={item} showSituation={false} />
+                ))}
+              </div>
+            </section>
+          ))}
+          {looseItems.length > 0 && (
+            <section className="library-group">
+              <div className="library-group-head">
+                <h2 className="library-group-title">Другие ситуации</h2>
+                <span className="library-group-count">{looseItems.length}</span>
+              </div>
+              <div className="library-grid">
+                {looseItems.map((item) => (
+                  <LibraryCard key={item.id} item={item} />
+                ))}
+              </div>
+            </section>
+          )}
         </div>
       )}
       <DirectionsSection />

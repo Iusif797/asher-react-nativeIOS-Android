@@ -1,11 +1,10 @@
 import { useState } from 'react'
 import { Button } from '@/components/ui/Button'
-import { EMOTIONS } from '@/data/wellbeing'
+import { EmotionPicker } from '@/features/mood/EmotionPicker'
+import { MoodScale } from '@/features/mood/MoodScale'
+import { moodSummary, moodTone, toggleEmotion } from '@/features/mood/moodModel'
 import { selectTodayEntry, useMoodStore } from '@/stores/moodStore'
 import { MoodChart } from './MoodChart'
-
-const SCALE = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-const MAX_EMOTIONS = 3
 
 const frequentEmotions = (emotionLists: string[][]): [string, number][] => {
   const counts = emotionLists.flat().reduce<Record<string, number>>(
@@ -29,15 +28,6 @@ export const MoodTab = () => {
   const average = recent.reduce((sum, e) => sum + e.score, 0) / Math.max(1, recent.length)
   const best = recent.reduce((a, b) => (b.score >= a.score ? b : a), recent[0])
 
-  const toggleEmotion = (emotion: string) => {
-    if (emotions.includes(emotion)) {
-      setEmotions(emotions.filter((e) => e !== emotion))
-      return
-    }
-    if (emotions.length >= MAX_EMOTIONS) return
-    setEmotions([...emotions, emotion])
-  }
-
   const save = () => {
     upsertToday(score, emotions)
     setEditing(false)
@@ -47,40 +37,22 @@ export const MoodTab = () => {
 
   return (
     <div className="diary-mood">
-      <article className="card diary-checkin">
+      <article className="card diary-checkin" data-mood-tone={moodTone(score)}>
         {showForm ? (
           <>
-            <p className="section-title">Как вы себя чувствуете сегодня?</p>
-            <div className="diary-checkin__scale" role="group" aria-label="Оценка от 1 до 10">
-              {SCALE.map((value) => (
-                <button
-                  key={value}
-                  className={
-                    value === score
-                      ? 'diary-score diary-score--active'
-                      : 'diary-score'
-                  }
-                  aria-pressed={value === score}
-                  onClick={() => setScore(value)}
-                >
-                  {value}
-                </button>
-              ))}
+            <div className="diary-checkin__head">
+              <p className="section-title">Как вы себя чувствуете сегодня?</p>
+              <p className="diary-checkin__readout" data-empty={score === 0 || undefined}>
+                {score === 0
+                  ? 'Отметьте состояние по шкале'
+                  : `${score} из 10 — ${moodSummary(score)}`}
+              </p>
             </div>
-            <div className="diary-checkin__emotions">
-              {EMOTIONS.map((emotion) => (
-                <button
-                  key={emotion}
-                  className={
-                    emotions.includes(emotion) ? 'chip diary-chip--active' : 'chip'
-                  }
-                  aria-pressed={emotions.includes(emotion)}
-                  onClick={() => toggleEmotion(emotion)}
-                >
-                  {emotion}
-                </button>
-              ))}
-            </div>
+            <MoodScale score={score} onSelect={setScore} />
+            <EmotionPicker
+              selected={emotions}
+              onToggle={(emotion) => setEmotions(toggleEmotion(emotions, emotion))}
+            />
             <Button disabled={score === 0} onClick={save} icon="check">
               Сохранить
             </Button>
@@ -88,8 +60,10 @@ export const MoodTab = () => {
         ) : (
           <div className="diary-checkin__done">
             <div>
-              <p className="section-title">Сегодня: {todayEntry?.score}/10</p>
-              <div className="diary-checkin__emotions">
+              <p className="section-title">
+                Сегодня: {todayEntry?.score}/10 — {moodSummary(todayEntry?.score ?? 0)}
+              </p>
+              <div className="mood-emotions__list">
                 {todayEntry?.emotions.map((emotion) => (
                   <span className="chip" key={emotion}>
                     {emotion}

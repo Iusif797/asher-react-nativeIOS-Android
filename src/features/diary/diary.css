@@ -21,60 +21,21 @@
   padding: var(--space-5);
 }
 
-.diary-checkin__scale {
-  display: grid;
-  grid-template-columns: repeat(5, 44px);
-  gap: var(--space-2);
-}
-
-@media (min-width: 768px) {
-  .diary-checkin__scale {
-    grid-template-columns: repeat(10, 44px);
-  }
-}
-
-.diary-score {
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-full);
-  border: 1px solid var(--color-line-strong);
-  background: var(--color-surface-raised);
-  font-weight: 700;
-  font-size: var(--text-sm);
-  color: var(--color-ink-soft);
-  transition:
-    transform var(--duration-fast) var(--ease-out),
-    background-color var(--duration-fast) var(--ease-out),
-    border-color var(--duration-fast) var(--ease-out),
-    color var(--duration-fast) var(--ease-out);
-}
-
-.diary-score:hover {
-  border-color: var(--color-accent);
-  transform: translateY(-2px);
-}
-
-.diary-score--active {
-  background: var(--color-accent);
-  border-color: var(--color-accent);
-  color: var(--color-on-accent);
-  transform: scale(1.08);
-}
-
-.diary-checkin__emotions {
+.diary-checkin__head {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
+  flex-direction: column;
+  gap: var(--space-1);
 }
 
-.diary-checkin__emotions .chip {
-  cursor: pointer;
+.diary-checkin__readout {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--mood-ink);
 }
 
-.diary-chip--active {
-  background: var(--color-accent-soft);
-  border-color: var(--color-accent);
-  color: var(--color-accent-deep);
+.diary-checkin__readout[data-empty] {
+  font-weight: 600;
+  color: var(--color-ink-faint);
 }
 
 .diary-checkin__done {
@@ -85,7 +46,7 @@
   width: 100%;
 }
 
-.diary-checkin__done .diary-checkin__emotions {
+.diary-checkin__done .mood-emotions__list {
   margin-top: var(--space-2);
 }
 
@@ -198,9 +159,11 @@
 }
 
 .diary-thought__text {
-  font-family: var(--font-display);
-  font-size: var(--text-md);
+  font-family: var(--font-quote);
+  font-size: var(--text-lg);
   font-style: italic;
+  font-weight: 500;
+  line-height: 1.32;
   color: var(--color-ink-soft);
 }
 

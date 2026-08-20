@@ -72,12 +72,13 @@
 }
 
 .assistant-bubble--user {
-  background: var(--color-accent);
-  border-color: var(--color-accent);
+  background: var(--gradient-accent);
+  border-color: transparent;
   color: var(--color-on-accent);
   border-radius: var(--radius-lg);
   border-bottom-right-radius: var(--radius-sm);
   font-weight: 600;
+  box-shadow: 0 2px 8px var(--color-glow-accent);
 }
 
 .assistant-typing {
@@ -189,9 +190,15 @@
   width: 38px;
   height: 38px;
   border-radius: var(--radius-full);
-  background: var(--color-accent);
+  background: var(--gradient-accent);
   color: var(--color-on-accent);
   flex-shrink: 0;
+  box-shadow: 0 2px 8px var(--color-glow-accent);
+  transition: transform var(--duration-fast) var(--ease-spring);
+}
+
+.assistant-send:not(:disabled):hover {
+  transform: scale(1.06);
 }
 
 .assistant-send:disabled {

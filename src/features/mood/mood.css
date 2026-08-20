@@ -1,0 +1,132 @@
+[data-mood-tone] {
+  --mood-surface: var(--mood-mid-soft);
+  --mood-ink: var(--mood-mid);
+}
+
+[data-mood-tone='low'] {
+  --mood-surface: var(--mood-low-soft);
+  --mood-ink: var(--mood-low);
+}
+
+[data-mood-tone='high'] {
+  --mood-surface: var(--mood-high-soft);
+  --mood-ink: var(--mood-high);
+}
+
+.mood-scale {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+  max-width: 30rem;
+}
+
+.mood-scale__track {
+  display: flex;
+  gap: 3px;
+}
+
+.mood-scale__step {
+  flex: 1;
+  min-width: 0;
+  height: 58px;
+  border-radius: 5px;
+  border: 1px solid var(--color-line);
+  background: var(--color-surface-sunken);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  color: var(--color-ink-faint);
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.mood-scale__step:first-child {
+  border-start-start-radius: var(--radius-md);
+  border-end-start-radius: var(--radius-md);
+}
+
+.mood-scale__step:last-child {
+  border-start-end-radius: var(--radius-md);
+  border-end-end-radius: var(--radius-md);
+}
+
+.mood-scale__step:hover {
+  border-color: var(--mood-ink);
+  color: var(--color-ink);
+}
+
+.mood-scale__step[data-filled] {
+  background: var(--mood-ink);
+  border-color: transparent;
+  color: var(--color-on-accent);
+}
+
+.mood-scale__step[data-active] {
+  box-shadow: 0 6px 18px oklch(from var(--mood-ink) l c h / 0.4);
+}
+
+@media (max-width: 380px) {
+  .mood-scale__track {
+    gap: 2px;
+  }
+
+  .mood-scale__step {
+    height: 54px;
+    font-size: var(--text-xs);
+  }
+}
+
+.mood-scale__legend {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--color-ink-faint);
+}
+
+.mood-emotions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  width: 100%;
+}
+
+.mood-emotions__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.mood-emotions__label {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-ink-faint);
+}
+
+.mood-emotions__counter {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--color-ink-faint);
+}
+
+.mood-emotions__counter[data-full] {
+  color: var(--mood-ink);
+}
+
+.mood-emotions__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.mood-emotions__chip--active {
+  background: oklch(from var(--mood-ink) l c h / 0.12);
+  border-color: var(--mood-ink);
+  color: var(--mood-ink);
+}

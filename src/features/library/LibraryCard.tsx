@@ -7,9 +7,14 @@ import { LIBRARY_KIND_META } from './libraryKinds'
 interface LibraryCardProps {
   item: LibraryItem
   compact?: boolean
+  showSituation?: boolean
 }
 
-export const LibraryCard = ({ item, compact = false }: LibraryCardProps) => {
+export const LibraryCard = ({
+  item,
+  compact = false,
+  showSituation = true,
+}: LibraryCardProps) => {
   const kindMeta = LIBRARY_KIND_META[item.kind]
   const cardClass = compact ? 'library-card library-card--compact card' : 'library-card card'
 
@@ -19,7 +24,9 @@ export const LibraryCard = ({ item, compact = false }: LibraryCardProps) => {
         <span className={`library-card-kind library-card-kind--${item.kind}`}>
           <Icon name={kindMeta.icon} size={compact ? 16 : 18} strokeWidth={1.6} />
         </span>
-        <span className="library-card-situation">{item.situation}</span>
+        <span className="library-card-situation">
+          {showSituation ? item.situation : kindMeta.label}
+        </span>
       </div>
       <h4>{item.title}</h4>
       <p className="library-card-excerpt">{item.excerpt}</p>

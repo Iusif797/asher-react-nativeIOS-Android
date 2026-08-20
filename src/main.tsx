@@ -3,9 +3,9 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { Capacitor } from '@capacitor/core'
 import { SplashScreen } from '@capacitor/splash-screen'
-import { App } from './app/App'
 import './styles/global.css'
 import './components/ui/ui.css'
+import { App } from './app/App'
 
 const WEB_SPLASH_MIN_VISIBLE_MS = 900
 const NATIVE_SPLASH_SETTLE_MS = 120

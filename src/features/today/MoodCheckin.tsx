@@ -3,11 +3,10 @@ import { Link } from 'react-router-dom'
 import { motion } from 'motion/react'
 import { Button } from '@/components/ui/Button'
 import { Icon } from '@/components/ui/Icon'
-import { EMOTIONS } from '@/data/wellbeing'
+import { EmotionPicker } from '@/features/mood/EmotionPicker'
+import { MoodScale } from '@/features/mood/MoodScale'
+import { moodSummary, moodTone, toggleEmotion } from '@/features/mood/moodModel'
 import { useMoodStore, selectTodayEntry } from '@/stores/moodStore'
-
-const SCALE = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-const MAX_EMOTIONS = 3
 
 export const MoodCheckin = () => {
   const todayEntry = useMoodStore(selectTodayEntry)
@@ -15,18 +14,9 @@ export const MoodCheckin = () => {
   const [score, setScore] = useState(0)
   const [emotions, setEmotions] = useState<string[]>([])
 
-  const toggleEmotion = (emotion: string) => {
-    if (emotions.includes(emotion)) {
-      setEmotions(emotions.filter((e) => e !== emotion))
-      return
-    }
-    if (emotions.length >= MAX_EMOTIONS) return
-    setEmotions([...emotions, emotion])
-  }
-
   if (todayEntry) {
     return (
-      <article className="card today-mood today-mood--done">
+      <article className="today-mood today-mood--done" data-mood-tone={moodTone(todayEntry.score)}>
         <motion.div
           className="today-mood__badge"
           initial={{ scale: 0.4, opacity: 0, rotate: -20 }}
@@ -35,15 +25,22 @@ export const MoodCheckin = () => {
         >
           <Icon name="check" size={22} strokeWidth={2.2} />
         </motion.div>
-        <h3>Настроение отмечено: {todayEntry.score}/10</h3>
-        <div className="today-mood__emotions">
-          {todayEntry.emotions.map((emotion) => (
-            <span className="chip" key={emotion}>
-              {emotion}
-            </span>
-          ))}
+        <div>
+          <p className="today-mood__overline">Отмечено сегодня</p>
+          <h3 className="today-mood__done-title">
+            {todayEntry.score}/10 — {moodSummary(todayEntry.score)}
+          </h3>
         </div>
-        <Link className="today-mood__link" to="/diary">
+        {todayEntry.emotions.length > 0 && (
+          <div className="mood-emotions__list">
+            {todayEntry.emotions.map((emotion) => (
+              <span className="chip" key={emotion}>
+                {emotion}
+              </span>
+            ))}
+          </div>
+        )}
+        <Link className="today__card-link" to="/diary">
           Смотреть график настроения
           <Icon name="arrowRight" size={15} strokeWidth={2} />
         </Link>
@@ -52,40 +49,20 @@ export const MoodCheckin = () => {
   }
 
   return (
-    <article className="card today-mood">
-      <p className="section-title">Как вы себя чувствуете сегодня?</p>
-      <div className="today-mood__scale" role="group" aria-label="Оценка от 1 до 10">
-        {SCALE.map((value) => (
-          <button
-            key={value}
-            className={
-              value === score
-                ? 'today-mood__score today-mood__score--active'
-                : 'today-mood__score'
-            }
-            aria-pressed={value === score}
-            onClick={() => setScore(value)}
-          >
-            {value}
-          </button>
-        ))}
+    <article className="today-mood" data-mood-tone={moodTone(score)}>
+      <div className="today-mood__head">
+        <h2 className="today-mood__question">Как вы себя чувствуете сегодня?</h2>
+        <p className="today-mood__readout" data-empty={score === 0 || undefined}>
+          {score === 0 ? 'Отметьте состояние по шкале' : `${score} из 10 — ${moodSummary(score)}`}
+        </p>
       </div>
-      <div className="today-mood__emotions">
-        {EMOTIONS.map((emotion) => {
-          const active = emotions.includes(emotion)
-          return (
-            <button
-              key={emotion}
-              className={active ? 'chip today-mood__chip--active' : 'chip'}
-              aria-pressed={active}
-              onClick={() => toggleEmotion(emotion)}
-            >
-              {emotion}
-            </button>
-          )
-        })}
-      </div>
+      <MoodScale score={score} onSelect={setScore} />
+      <EmotionPicker
+        selected={emotions}
+        onToggle={(emotion) => setEmotions(toggleEmotion(emotions, emotion))}
+      />
       <Button
+        size="lg"
         disabled={score === 0}
         onClick={() => upsertToday(score, emotions)}
         icon="check"
